@@ -1,11 +1,186 @@
+/* Global Variables */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: 16px;
+  --primary-color: #e91e63;       /* Muted pink */
+  --secondary-color: #3f51b5;     /* Complementary color */
+  --decrease-color: #ff5252;      /* For negative changes */
+  --pipe-color: #78909c;          /* Pipe grayscale */
+  --text-dark: #263238;
+  --text-light: #eceff1;
+  --background-light: #f5f5f5;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+  background-color: var(--background-light);
+  scroll-behavior: smooth;
+}
+
+/* Section Base Styles */
+section {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Scroll Prompt Animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+/* Water Drop Animation */
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, 30px) rotate(90deg);
+  }
+  50% {
+    transform: translate(40px, 0) rotate(180deg);
+  }
+  75% {
+    transform: translate(20px, -30px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+/* Highcharts custom styles */
+.highcharts-data-label text {
+  font-weight: bold !important;
+  fill: #333 !important;
+}
+
+.highcharts-point {
+  transition: opacity 0.3s ease;
+}
+
+/* Animation for bars when they appear */
+.section-visible .highcharts-series-group {
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom tooltip styles */
+.highcharts-tooltip-box {
+  fill: rgba(255, 255, 255, 0.95);
+  stroke: #e0e0e0;
+  stroke-width: 1px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+}
+
+.highcharts-tooltip text {
+  fill: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.highcharts-color-0 {
+  /* 2019 bars - semi-transparent */
+  opacity: 0.7 !important;
+}
+
+.highcharts-color-1 {
+  /* 2021 bars - solid with border */
+  stroke: #333 !important;
+  stroke-width: 1.5px !important;
+}
+
+/* Pipe and leak animations */
+@keyframes rumble {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-5px) translateY(-3px); }
+  50% { transform: translateX(5px) translateY(3px); }
+  75% { transform: translateX(3px) translateY(-2px); }
+}
+
+/* Water drop animation */
+@keyframes drop-fall {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Fly animation for leak content */
+@keyframes fly {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation utilities */
+@keyframes fly {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

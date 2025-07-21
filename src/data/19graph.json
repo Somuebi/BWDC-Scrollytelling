@@ -1,0 +1,30 @@
+{
+    "chart": {"type": "column"},
+    "title": {"text": "2019 - Women in STEM Employment by Race/Ethnicity"},
+    "xAxis": {
+        "categories": ["Asian", "Black", "Hispanic", "White"]
+    },
+    "yAxis": {
+        "min": 0,
+        "max": 60,
+        "tickInterval": 10,
+        "title": {
+            "text": "Percentage of Women in STEM Employment"
+        }
+    },
+    "plotOptions": {
+        "column": {
+            "colorByPoint": true
+        }
+    },
+    "colors": {
+        "Asian": "#f1c40f",
+        "Black": "#e67e22",
+        "Hispanic": "#e74c3c",
+        "White": "#95a5a6"
+    },
+    "series": [{
+        "name": "Percentage By Race/Ethnicity",
+        "data": [47.1, 25, 24.9, 26.1]
+    }]
+}
