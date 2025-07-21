@@ -1,36 +1,36 @@
 <script>
   import { onMount } from 'svelte';
-  
+
   export let title;
   export let subtitle;
   export let categories;
   export let series;
   export let visible = false;
-  
+
   let chartContainer;
-  
+
   onMount(() => {
-    // Dynamically import Highcharts
+    // Dynamically imports Highcharts
     import('highcharts').then(Highcharts => {
-      // Initialize chart when component mounts
+      // Initializes chart 
       Highcharts.chart(chartContainer, {
         chart: {
           type: 'bar',
           backgroundColor: 'transparent',
-          animation: visible ? { duration: 1000 } : false
+          animation: visible ? { duration: 1000 } : false,
         },
-        title: { 
+        title: {
           text: title,
           style: {
             fontSize: '1.5rem',
-            fontWeight: 'bold'
-          }
+            fontWeight: 'bold',
+          },
         },
-        subtitle: { 
+        subtitle: {
           text: subtitle,
           style: {
-            color: '#666'
-          }
+            color: '#666',
+          },
         },
         xAxis: {
           categories: categories,
@@ -39,59 +39,64 @@
             style: {
               fontSize: '1.1rem',
               fontWeight: 'bold'
-            }
-          }
+            },
+          },
         },
         yAxis: {
           min: 0,
           max: 100,
-          title: { 
+          title: {
             text: 'Percentage',
             style: {
-              fontSize: '1.1rem'
-            }
+              fontSize: '1.1rem',
+            },
           },
-          labels: { 
+          labels: {
             format: '{value}%',
             style: {
-              fontSize: '1rem'
-            }
-          }
+              fontSize: '1rem',
+            },
+          },
         },
         plotOptions: {
           bar: {
-            grouping: false,
-            pointPadding: 0.15,
-            groupPadding: 0.1,
+            
+            pointPadding: 0.1, 
+            groupPadding: 0.2,
             dataLabels: {
               enabled: true,
               style: {
                 fontSize: '0.9rem',
                 fontWeight: 'bold',
-                textOutline: 'none'
-              }
-            }
+                textOutline: 'none',
+              },
+            },
           },
           series: {
             animation: visible ? { duration: 1000 } : false,
             states: {
               hover: {
-                brightness: 0.1
-              }
-            }
-          }
+                brightness: 0.1,
+              },
+            },
+          },
         },
         legend: {
-          enabled: false
+          enabled: true, // Shows year labels
+          reversed: false, 
+          itemStyle: {
+            fontWeight: 'bold',
+            fontSize: '1rem',
+          },
         },
         tooltip: {
           headerFormat: '<b>{point.key}</b><br>',
-          pointFormat: '{series.name}: <b>{point.y}%</b>'
+          pointFormat: '{series.name}: <b>{point.y}%</b>',
         },
         credits: {
-          enabled: false
+          enabled: false,
         },
-        series: series
+        series: series,
       });
     });
   });
@@ -105,7 +110,7 @@
     height: 500px;
     margin: 0 auto;
   }
-  
+
   @media (max-width: 768px) {
     .chart-container {
       height: 400px;

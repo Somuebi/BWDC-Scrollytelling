@@ -85,7 +85,7 @@
 <section class="solutions-section" bind:this={sectionElement}>
   <div class="header">
     <h2>Repairing the Pipeline</h2>
-    <p>Concrete solutions to patch the leaks and support Black Women in STEM</p>
+    <p>Black Women are in a special situation of representing both the large minorities in STEM - Black and Women. We need concrete solutions to patch the leaks and support Black Women in STEM</p>
   </div>
   
   
@@ -135,7 +135,7 @@
   .header {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 4rem;
   }
   
   .header h2 {

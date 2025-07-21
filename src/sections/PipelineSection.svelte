@@ -14,7 +14,7 @@
         { label: 'Mentorship Access', value: '67% report lack of mentors' },
       ],
       description:
-        'Black girls face systemic barriers in STEM education including underfunded schools, biased tracking, and lack of representation in curriculum and faculty.',
+        'Black girls face systemic barriers in STEM education including underfunded schools, biased tracking, and lack of representation in curriculum and faculty. Only 50% of Black females gain exposure to fields in Computers and Technology while they are students.',
     },
     {
       id: 'workplace',
@@ -38,7 +38,7 @@
         { label: 'Burnout', value: '63% report' },
       ],
       description:
-        "The 'concrete ceiling' prevents advancement to leadership roles. Lack of sponsorship and exclusion from networks limit career growth opportunities.",
+        "The 'concrete ceiling' prevents advancement to leadership roles. Lack of sponsorship and exclusion from networks limit career growth opportunities. Even though women make up a third of the workforce at tech companies, a 2021 research by Bloomberg found that professional and managerial ranks at these companies contain fewer women than other large companies.",
     },
   ];
 
@@ -191,7 +191,6 @@
   border-left-color: #e91e63;
 }
 
-  /* Other styles remain mostly the same, with minor adjustments */
 .section-title {
   text-align: center;
   max-width: 800px;

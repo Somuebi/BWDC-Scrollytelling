@@ -2,65 +2,45 @@
   import { onMount } from 'svelte';
   import { scrollObserver } from '../lib/utils/scrollObserver.js';
   import BarChart from '../lib/components/BarChart.svelte';
-  
-  // Sample data (replace with your actual JSON data)
+
   const groups = [
     { name: 'Asian Women', values: { 2019: 47.1, 2021: 48.2 } },
     { name: 'Black Women', values: { 2019: 25, 2021: 20.7 } },
     { name: 'Hispanic Women', values: { 2019: 24.9, 2021: 26.4 } },
-    { name: 'White Women', values: { 2019: 26.1, 2021: 28.8 } }
+    { name: 'White Women', values: { 2019: 26.1, 2021: 28.8 } },
   ];
-  
-  // Colors for each group
-  const colors = [
-    '#E91E63', // Asian Women (pink)
-    '#FF9800', // Black Women (orange)
-    '#4CAF50', // Hispanic Women (green)
-    '#2196F3', // White Women (blue)
-  ];
-  
+
+  // Colors for each group, used as the source of truth
+  const groupColors = {
+    'Asian Women': '#E91E63',   // Pink
+    'Black Women': '#FF9800',   // Orange
+    'Hispanic Women': '#4CAF50',// Green
+    'White Women': '#2196F3',   // Blue
+  };
+
   let visible = false;
   let sectionElement;
-  
-  // Prepare data for Highcharts
+
+  // Looks at data for chart
   const categories = groups.map(group => group.name);
-  
+
   const series = [
-    {
-      name: '2019',
-      data: groups.map(group => ({
-        y: group.values[2019],
-        color: colors[groups.indexOf(group)] + 'AA' // Add transparency
-      })),
-      dataLabels: {
-        enabled: true,
-        format: '{y}%',
-        style: {
-          color: '#333',
-          fontWeight: 'bold'
-        }
-      }
-    },
     {
       name: '2021',
       data: groups.map(group => ({
         y: group.values[2021],
-        color: colors[groups.indexOf(group)],
-        borderColor: '#333',
-        borderWidth: 2
+        color: groupColors[group.name], // Uses the solid, primary color
       })),
-      dataLabels: {
-        enabled: true,
-        format: '{y}%',
-        style: {
-          color: '#333',
-          fontWeight: 'bold',
-          textOutline: 'none'
-        }
-      }
-    }
+    },
+    {
+      name: '2019',
+      data: groups.map(group => ({
+        y: group.values[2019],
+        color: groupColors[group.name] + 'AA', // Add alpha for a pastel/lighter colours
+      })),
+    },
   ];
-  
+
   onMount(() => {
     scrollObserver(sectionElement, () => {
       visible = true;
@@ -69,45 +49,39 @@
 </script>
 
 <section class="data-section" bind:this={sectionElement}>
-  <h2>Changes in STEM Representation (2019-2021)</h2>
-  
+  <h2>Representation Changes for Women in STEM (2019 vs 2021)</h2>
+
   <div class="chart-wrapper">
     <BarChart
-      title="STEM Representation by Race/Ethnicity"
-      subtitle="Percentage of representation in STEM fields"
+      title="STEM Workforce Representation by Race/Ethnicity"
+      subtitle="Percentage of employed scientists and engineers who are women"
       {categories}
       {series}
       {visible}
     />
   </div>
-  
-  <div class="year-comparison">
-    <div class="year-key">
-      <div class="key-item">
-        <div class="key-box key-2019"></div>
-        <span>2019 Data</span>
-      </div>
-      <div class="key-item">
-        <div class="key-box key-2021"></div>
-        <span>2021 Data</span>
+
+  <div class="insights-wrapper">
+    <div class="insight-card" style="border-left-color: {groupColors['Black Women']};">
+      <div class="icon decrease">▼</div>
+      <div class="content">
+        <h3>Black Women Show Decline</h3>
+        <p>
+          While most groups saw increases, Black women experienced a <strong>4.3 percentage point
+            decrease</strong> in representation—the only group to show a decline.
+        </p>
       </div>
     </div>
-    
-    <div class="insights">
-      <div class="insight-card">
-        <div class="icon decrease">▼</div>
-        <div class="content">
-          <h3>Black Women Show Significant Decline</h3>
-          <p>While most groups saw increases, Black Women experienced a 4.3% decrease in STEM representation - the only group to show a decline.</p>
-        </div>
-      </div>
-      
-      <div class="insight-card">
-        <div class="icon increase">▲</div>
-        <div class="content">
-          <h3>Female Representation Grows</h3>
-          <p>White women experienced the largest increase of 2.7%.With, Asian Women showed an increase of 1.1%, Hispanic Women showed an increase of 1.5%</p>
-        </div>
+
+    <div class="insight-card" style="border-left-color: {groupColors['White Women']};">
+      <div class="icon increase">▲</div>
+      <div class="content">
+        <h3>Other Groups See Growth</h3>
+        <p>
+          White women experienced the largest increase of <strong>2.7 percentage points</strong>. Meanwhile,
+          representation for Asian women and Hispanic women grew by <strong>1.1</strong> and
+          <strong>1.5 percentage points</strong> respectively.
+        </p>
       </div>
     </div>
   </div>
@@ -121,8 +95,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
-  
+
   h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -130,134 +105,86 @@
     color: #1a2a6c;
     max-width: 800px;
   }
-  
+
   .chart-wrapper {
     width: 100%;
     max-width: 900px;
     margin-bottom: 3rem;
     background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   }
-  
-  .year-comparison {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    max-width: 900px;
-    width: 100%;
-  }
-  
-  .year-key {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-  }
-  
-  .key-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-  
-  .key-box {
-    width: 25px;
-    height: 25px;
-    border-radius: 4px;
-  }
-  
-  .key-2019 {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid #333;
-  }
-  
-  .key-2021 {
-    background: #333;
-    border: 1px solid #333;
-  }
-  
-  .insights {
+
+
+  .insights-wrapper {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
     width: 100%;
+    max-width: 900px;
+    justify-content: center;
   }
-  
+
   .insight-card {
     flex: 1;
-    min-width: 300px;
+    min-width: 320px;
     background: white;
     border-radius: 8px;
     padding: 1.5rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
+    align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid;
+    border-left: 5px solid; /* Default state */
   }
-  
-  .insight-card:nth-child(1) {
-    border-left-color: #E91E63;
-  }
-  
-  .insight-card:nth-child(2) {
-    border-left-color: #4CAF50;
-  }
-  
+
   .icon {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     font-weight: bold;
+    flex-shrink: 0;
   }
-  
+
   .decrease {
-    background: rgba(233, 30, 99, 0.1);
-    color: #E91E63;
+    background: #FF980020; /* Uses insight color with alpha */
+    color: #FF9800;
   }
-  
+
   .increase {
-    background: rgba(76, 175, 80, 0.1);
-    color: #4CAF50;
+    background: #2196F320; /* Uses insight color with alpha */
+    color: #2196F3;
   }
-  
+
   .content h3 {
     margin-top: 0;
     margin-bottom: 0.5rem;
     color: #263238;
   }
-  
+
   .content p {
     margin: 0;
     color: #546e7a;
     line-height: 1.6;
   }
-  
-  /* Responsive styles */
+
   @media (max-width: 768px) {
     h2 {
       font-size: 2rem;
     }
-    
+
     .chart-wrapper {
-      padding: 10px;
+      padding: 1rem;
     }
-    
-    .year-key {
+
+    .insights-wrapper {
       flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .insights {
-      flex-direction: column;
+      gap: 1rem;
     }
   }
 </style>
