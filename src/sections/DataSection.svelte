@@ -127,7 +127,7 @@
     font-size: 2.5rem;
     margin-bottom: 3rem;
     text-align: center;
-    color: #263238;
+    color: #1a2a6c;
     max-width: 800px;
   }
   

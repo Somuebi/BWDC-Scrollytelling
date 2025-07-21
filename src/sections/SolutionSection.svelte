@@ -139,7 +139,7 @@
   }
   
   .header h2 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     color: #1a2a6c;
     margin-bottom: 1rem;
   }
