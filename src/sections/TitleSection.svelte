@@ -4,10 +4,8 @@
   let scrollPromptVisible = true;
   
   onMount(() => {
-    // Hide scroll prompt after 5 seconds
     const timeout = setTimeout(() => scrollPromptVisible = false, 5000);
     
-    // Or hide when user starts scrolling
     const scrollHandler = () => {
       scrollPromptVisible = false;
       window.removeEventListener('scroll', scrollHandler);

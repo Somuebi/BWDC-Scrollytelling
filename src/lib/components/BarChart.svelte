@@ -82,7 +82,7 @@
           },
         },
         legend: {
-          enabled: true, // Shows year labels
+          enabled: true, 
           reversed: false, 
           itemStyle: {
             fontWeight: 'bold',

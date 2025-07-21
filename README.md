@@ -20,3 +20,4 @@ Run `npm install` and then `npm run dev` to spin up the project locally. Then, s
 
 ## Credit
 Repo created using vite (`npm create vite@6`)
+Open AI ChatGpt was used to help come up with the perfect way to divide the project into different segments.

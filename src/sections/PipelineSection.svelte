@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import LeakPoint from '../lib/components/LeakPoint.svelte';
 
-  // Leak data remains the same...
   const leaks = [
     {
       id: 'education',
@@ -133,7 +132,7 @@
     background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
   }
 
-  /* This container holds the sticky visualization */
+  /* Holds the sticky visualization */
   .pipeline-visualization-container {
     position: sticky;
     top: 20vh;
@@ -148,15 +147,15 @@
   height: 100%;
 }
 
- /* This container holds the scrollable text cards */
+ 
 .leak-content-container {
   position: relative;
-  max-width: 1200px; /* Match the visualization width */
+  max-width: 1200px; 
   margin: 0 auto;
   z-index: 5;
 }
 
-  /* This is the trigger AND the card */
+  /* Trigger AND the card */
 .leak-content {
   min-height: 100vh;
   display: flex;
@@ -172,7 +171,7 @@
   opacity: 1;
 }
 
-  /* NEW: Use margin to push cards to the correct side */
+
 .leak-content.left {
   margin-right: auto; /* Pushes card to the left */
 }
@@ -181,7 +180,7 @@
   margin-left: auto; /* Pushes card to the right */
 }
 
-/* Adjust card visual styles to be self-contained */
+
 .leak-content .leak-header {
   border-left: 5px solid #1a2a6c;
   padding-left: 1.5rem;
@@ -211,7 +210,7 @@
 
  .timeline {
   position: absolute;
-  left: 50%; /* Center the timeline */
+  left: 50%; 
   transform: translateX(-50%);
   width: 4px;
   height: 100%;
@@ -278,29 +277,13 @@
     color: #e91e63;
   }
 
-  /* Other styles (data items, description, etc.) can remain as they were */
   .leak-data {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
     margin-bottom: 1.5rem;
   }
-  .data-item {
-    background: rgba(26, 42, 108, 0.05);
-    padding: 1rem;
-    border-radius: 8px;
-  }
-  .label {
-    font-weight: 600;
-    color: #1a2a6c;
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .value {
-    color: #e91e63;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
+ 
   .description {
     margin: 0;
     line-height: 1.6;

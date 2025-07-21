@@ -1,8 +1,6 @@
 <script>
   import { fade, fly } from 'svelte/transition';
 
-  export let leak;
-  export let index;
   export let active = false;
   export let position = 0;
 </script>
